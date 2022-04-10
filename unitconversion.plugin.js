@@ -144,7 +144,6 @@ module.exports = (() =>
 						console.log(message_list);
 						message_list = message_list.map(word => converter(word));
 						message.content = message_list.join(" ");
-						message.content = message.content;
 
 
 					});
