@@ -44,10 +44,9 @@ function converter(incomingText) {
   const unit = incomingText.split(/\d+/)[1];
   let resVal;
   let resUnit;
-  console.log(unit);
-  console.log(value);
-  console.log(unit);
-  if (unit === null || unit === undefined) {
+
+  if ((value === null || value === undefined || value === NaN)  || (unit === null || unit === undefined)) {
+
     return incomingText;
   }
   switch (unit.toLowerCase()) {
@@ -138,12 +137,11 @@ module.exports = (() =>
 				{
 					Patcher.after(DiscordModules.MessageActions, "sendMessage", (_, [, message]) =>
 					{
-						const content = message.content.toLowerCase();
-
+						const content = message.content;
 						let message_list = content.split(" ");
-						console.log(message_list);
 						message_list = message_list.map(word => converter(word));
 						message.content = message_list.join(" ");
+						message.content = message.content;
 
 
 					});
