@@ -39,6 +39,14 @@ function convertKphToMph(kph) {
   return kph / 1.609344;
 }
 
+function converMilesToKm(miles) {
+  return miles * 1.609344;
+}
+
+function convertKmToMiles(km) {
+  return km / 1.609344;
+}
+
 function converter(incomingText) {
   const value = parseFloat(incomingText.split(/[^\d+]/)[0]);
   const unit = incomingText.split(/\d+/)[1];
@@ -74,9 +82,17 @@ function converter(incomingText) {
       resVal = convertMphToKph(value);
       resUnit = 'kph';
       break;
-    case 'kph':
+case 'kph':
       resVal = convertKphToMph(value);
       resUnit = 'mph';
+      break;
+   case 'miles':
+      resVal = convertMilesToKm(value);
+      resUnit = 'km';
+      break;
+   case 'km':
+      resVal = convertKmToMiles(value);
+      resUnit = 'miles';
       break;
     case 'f':
       resVal = convertFToC(value);
