@@ -39,7 +39,7 @@ function convertKphToMph(kph) {
   return kph / 1.609344;
 }
 
-function converMilesToKm(miles) {
+function convertMilesToKm(miles) {
   return miles * 1.609344;
 }
 
