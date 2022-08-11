@@ -47,16 +47,26 @@ function convertKmToMiles(km) {
   return km / 1.609344;
 }
 
+function convertCmToIn(cm){
+  return cm / 2.54;
+}
+
+function convertInToCm(inch){
+  return (inch) * 2.54;
+}
+
 function converter(incomingText) {
-  const value = parseFloat(incomingText.split(/[^\d+]/)[0]);
-  const unit = incomingText.split(/\d+/)[1];
+  const value = parseFloat(incomingText.split(/[^\d+-\.]/)[0]);
+  const unit = incomingText.split(/[\d-.]+/)[1];
   let resVal;
   let resUnit;
-
+  console.log(value);
+  console.log(unit);
   if ((value === null || value === undefined || value === NaN)  || (unit === null || unit === undefined)) {
 
     return incomingText;
   }
+
   switch (unit.toLowerCase()) {
     case 'kg':
       resVal = convertKgToLbs(value);
@@ -102,9 +112,18 @@ case 'kph':
       resVal = convertCToF(value);
       resUnit = 'f';
       break;
+    case 'in':
+      resVal = convertInToCm(value);
+      resUnit = 'cm';
+      break;
+    case 'cm':
+      resVal = convertCmToIn(value);
+      resUnit = 'in';
+      break;
     default:
       return incomingText;
   }
+ resVal = Math.round(resVal * 100) / 100;
   console.log(`${incomingText} (${resVal}${resUnit})`);
   return `${incomingText} (${resVal}${resUnit})`
 }
